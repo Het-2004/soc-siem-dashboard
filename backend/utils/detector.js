@@ -9,3 +9,9 @@ module.exports = async (log) => {
     });
   }
 };
+
+global.io.emit("new-alert", {
+  title: "Brute Force Attack Detected",
+  severity: "HIGH",
+  time: new Date()
+});

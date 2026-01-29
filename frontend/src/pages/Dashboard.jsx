@@ -8,14 +8,27 @@ export default function Dashboard() {
     api.get("/alerts").then(res => setAlerts(res.data));
   }, []);
 
+  // return (
+  //   <div>
+  //     <h2>SOC Dashboard</h2>
+  //     {alerts.map(a => (
+  //       <div key={a._id}>
+  //         {a.title} | {a.severity}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
+  const high = alerts.filter(a => a.severity === "HIGH").length;
+  const medium = alerts.filter(a => a.severity === "MEDIUM").length;
+  const low = alerts.filter(a => a.severity === "LOW").length;
+
   return (
-    <div>
+    <>
+      <Navbar />
       <h2>SOC Dashboard</h2>
-      {alerts.map(a => (
-        <div key={a._id}>
-          {a.title} | {a.severity}
-        </div>
-      ))}
-    </div>
+      <p>High Alerts: {high}</p>
+      <p>Medium Alerts: {medium}</p>
+      <p>Low Alerts: {low}</p>
+    </>
   );
 }

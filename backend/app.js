@@ -9,4 +9,8 @@ app.use(cors());
 const healthRoutes = require("./routes/health.routes");
 app.use("/health", healthRoutes);
 
+const auditLogger = require("./middlewares/auditLogger");
+app.use(auditLogger);
+app.use("/api/audit-logs", require("./routes/audit.routes"));
+
 module.exports = app;

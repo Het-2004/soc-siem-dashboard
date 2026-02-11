@@ -1,5 +1,5 @@
-// import { useEffect, useState } from "react";
-// import api from "../api/api";
+import { useEffect, useState } from "react";
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 import { PieChart, Pie, Tooltip, Legend } from "recharts";
 // import { checkBackendHealth } from "../utils/healthCheck";
@@ -38,6 +38,12 @@ import { PieChart, Pie, Tooltip, Legend } from "recharts";
 // Displays alerts summary and receives real-time notifications
 
 export default function Dashboard() {
+  useEffect(() => {
+    api.get("/stats").then(res => {
+      console.log("Statistics:", res.data);
+    });
+  }, []);
+
   return (
     <div>
       <h2>Live SOC Dashboard</h2>
@@ -45,3 +51,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

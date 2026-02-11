@@ -8,4 +8,7 @@ const logSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+// 🔹 Added index for faster time-based queries
+logSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model("Log", logSchema);

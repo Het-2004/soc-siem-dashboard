@@ -13,5 +13,6 @@ const auditLogger = require("./middlewares/auditLogger");
 app.use(auditLogger);
 app.use("/api/audit-logs", require("./routes/audit.routes"));
 app.use("/api/stats", require("./routes/stats.routes"));
+app.use("/api/trends", require("./routes/trend.routes"));
 
 module.exports = app;

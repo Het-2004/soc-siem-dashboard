@@ -43,6 +43,11 @@ export default function Dashboard() {
       console.log("Statistics:", res.data);
     });
   }, []);
+  useEffect(() => {
+    api.get("/trends").then(res => {
+      console.log("Trend Data:", res.data);
+    });
+  }, []);
 
   return (
     <div>

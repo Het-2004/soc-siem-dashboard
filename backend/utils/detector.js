@@ -1,5 +1,6 @@
 const Log = require("../models/Log");
 const Alert = require("../models/Alert");
+const BlockedIP = require("../models/BlockedIP");
 
 module.exports = async function detectThreat(log) {
 
@@ -10,6 +11,13 @@ module.exports = async function detectThreat(log) {
     ipAddress: log.ipAddress,
     createdAt: { $gte: tenMinutesAgo }
   });
+
+  if (ipActivityCount >= 20) {
+    await BlockedIP.create({
+      ipAddress: log.ipAddress,
+      reason: "Excessive suspicious activity"
+    });
+  }
 
   // If IP exceeds 10 actions → mark suspicious
   if (ipActivityCount >= 10) {

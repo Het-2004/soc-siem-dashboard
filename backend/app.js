@@ -14,5 +14,6 @@ app.use(auditLogger);
 app.use("/api/audit-logs", require("./routes/audit.routes"));
 app.use("/api/stats", require("./routes/stats.routes"));
 app.use("/api/trends", require("./routes/trend.routes"));
-
+const ipBlocker = require("./middlewares/ipBlocker");
+app.use(ipBlocker);
 module.exports = app;

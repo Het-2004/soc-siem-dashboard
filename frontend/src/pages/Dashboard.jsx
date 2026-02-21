@@ -1,59 +1,103 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import Navbar from "../components/Navbar";
-import { PieChart, Pie, Tooltip, Legend } from "recharts";
-// import { checkBackendHealth } from "../utils/healthCheck";
-
-// export default function Dashboard() {
-//   // const [alerts, setAlerts] = useState([]);
-
-//    useEffect(() => {
-//     checkBackendHealth()
-//       .then(data => console.log("Backend Status:", data.status))
-//       .catch(() => console.log("Backend not reachable"));
-//   }, []);
-
-
-//   const data = [
-//     { name: "HIGH", value: 0 },
-//     { name: "MEDIUM", value: 0 },
-//     { name: "LOW", value: 0 }
-//   ];
-
-//   return (
-//     <>
-//       <Navbar />
-//       <h2>SOC Dashboard Analytics</h2>
-//       <p>System health verified</p>
-//       <PieChart width={400} height={300}>
-//         <Pie data={data} dataKey="value" nameKey="name" />
-//         <Tooltip />
-//         <Legend />
-//       </PieChart>
-//     </>
-//   );
-// }
+import { PieChart, Pie, Tooltip, Legend, LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 
 // Main SOC Dashboard
 // Displays alerts summary and receives real-time notifications
 
 export default function Dashboard() {
+  const [stats, setStats] = useState(null);
+  const [trends, setTrends] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    api.get("/stats").then(res => {
-      console.log("Statistics:", res.data);
-    });
-  }, []);
-  useEffect(() => {
-    api.get("/trends").then(res => {
-      console.log("Trend Data:", res.data);
-    });
+    fetchData();
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const statsRes = await api.get("/stats");
+      setStats(statsRes.data);
+
+      const trendsRes = await api.get("/trends");
+      setTrends(trendsRes.data);
+      
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <p>Loading dashboard...</p>;
+  }
+
+  const chartData = stats 
+    ? [
+        { name: "HIGH", value: stats.high || 0 },
+        { name: "MEDIUM", value: stats.medium || 0 },
+        { name: "LOW", value: stats.low || 0 }
+      ]
+    : [];
+
   return (
-    <div>
-      <h2>Live SOC Dashboard</h2>
-      <p>System monitoring and alert visualization</p>
-    </div>
+    <>
+      <Navbar />
+      <div style={{ padding: "2rem" }}>
+        <h2>SOC Dashboard Analytics</h2>
+        
+        {stats && (
+          <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem", flexWrap: "wrap" }}>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+              <h3>Total Alerts</h3>
+              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#667eea" }}>{stats.total || 0}</p>
+            </div>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+              <h3>High Severity</h3>
+              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#e74c3c" }}>{stats.high || 0}</p>
+            </div>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+              <h3>Medium Severity</h3>
+              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#f39c12" }}>{stats.medium || 0}</p>
+            </div>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+              <h3>Low Severity</h3>
+              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#27ae60" }}>{stats.low || 0}</p>
+            </div>
+          </div>
+        )}
+
+        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+          {chartData.length > 0 && (
+            <div>
+              <h3>Alert Severity Distribution</h3>
+              <PieChart width={400} height={300}>
+                <Pie data={chartData} dataKey="value" nameKey="name" />
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </div>
+          )}
+
+          {trends.length > 0 && (
+            <div>
+              <h3>7-Day Alert Trend</h3>
+              <ResponsiveContainer width={400} height={300}>
+                <LineChart data={trends}>
+                  <CartesianGrid />
+                  <XAxis dataKey="_id" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="count" stroke="#667eea" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -36,4 +36,8 @@ app.use("/api/audit-logs", require("./routes/audit.routes"));
 const ipBlocker = require("./middlewares/ipBlocker");
 app.use(ipBlocker);
 
+// Global error handler (must be last)
+const errorHandler = require("./middlewares/errorHandler");
+app.use(errorHandler);
+
 module.exports = app;

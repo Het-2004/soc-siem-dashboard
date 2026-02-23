@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const http = require("http");
 const { Server } = require("socket.io");
 const app = require("./app");
+const logger = require("./utils/logger");
 
 dotenv.config();
 
@@ -14,13 +15,15 @@ const io = new Server(server, {
 global.io = io;
 
 io.on("connection", socket => {
-  console.log("SOC dashboard connected");
+  logger.info("SOC dashboard connected", { socketId: socket.id });
 });
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     server.listen(5000, () => {
-      console.log("SOC Server running with real-time alerts on port 5000");
+      logger.info("SOC Server running with real-time alerts on port 5000");
     });
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    logger.error("MongoDB connection failed", err);
+  });

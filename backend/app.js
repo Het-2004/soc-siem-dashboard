@@ -5,6 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Security headers
+const securityHeaders = require("./middlewares/securityHeaders");
+app.use(securityHeaders);
+
 // Rate limiting middleware
 const rateLimiter = require("./middlewares/rateLimiter");
 app.use(rateLimiter);

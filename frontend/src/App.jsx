@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Alerts from "./pages/Alerts";
 import Logs from "./pages/Logs";
 import Incidents from "./pages/Incidents";
+import AuditLogs from "./pages/AuditLogs";
 import ProtectedRoute from "./auth/ProtectedRoute";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
         <Route path="/logs" element={<ProtectedRoute><Logs /></ProtectedRoute>} />
         <Route path="/incidents" element={<ProtectedRoute><Incidents /></ProtectedRoute>} />
+        <Route path="/audit-logs" element={<ProtectedRoute><AuditLogs /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

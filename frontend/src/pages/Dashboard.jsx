@@ -10,6 +10,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState(null);
   const [trends, setTrends] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -17,21 +18,39 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     try {
-      const statsRes = await api.get("/stats");
-      setStats(statsRes.data);
+      setLoading(true);
+      setError(null);
+      
+      const statsRes = await api.get("/stats").catch(err => {
+        console.error("Stats error:", err);
+        return null;
+      });
+      
+      const trendsRes = await api.get("/trends").catch(err => {
+        console.error("Trends error:", err);
+        return null;
+      });
 
-      const trendsRes = await api.get("/trends");
-      setTrends(trendsRes.data);
+      if (statsRes) setStats(statsRes.data);
+      if (trendsRes) setTrends(trendsRes.data);
       
       setLoading(false);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
+      setError("Failed to load dashboard data");
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <p>Loading dashboard...</p>;
+    return (
+      <>
+        <Navbar />
+        <div style={{ padding: "2rem", textAlign: "center" }}>
+          <p>Loading dashboard...</p>
+        </div>
+      </>
+    );
   }
 
   const chartData = stats 
@@ -48,21 +67,27 @@ export default function Dashboard() {
       <div style={{ padding: "2rem" }}>
         <h2>SOC Dashboard Analytics</h2>
         
+        {error && (
+          <div style={{ padding: "1rem", background: "#ffebee", color: "#e74c3c", borderRadius: "4px", marginBottom: "1rem" }}>
+            {error}
+          </div>
+        )}
+        
         {stats && (
           <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem", flexWrap: "wrap" }}>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
               <h3>Total Alerts</h3>
               <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#667eea" }}>{stats.total || 0}</p>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
               <h3>High Severity</h3>
               <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#e74c3c" }}>{stats.high || 0}</p>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
               <h3>Medium Severity</h3>
               <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#f39c12" }}>{stats.medium || 0}</p>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px" }}>
+            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
               <h3>Low Severity</h3>
               <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#27ae60" }}>{stats.low || 0}</p>
             </div>

@@ -5,6 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Rate limiting middleware
+const rateLimiter = require("./middlewares/rateLimiter");
+app.use(rateLimiter);
+
 // health check
 const healthRoutes = require("./routes/health.routes");
 app.use("/health", healthRoutes);

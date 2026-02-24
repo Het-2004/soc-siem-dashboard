@@ -2,8 +2,28 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(express.json());
-app.use(cors());
+app.set("trust proxy", 1);
+
+const allowedOrigins = process.env.CORS_ORIGIN
+	? process.env.CORS_ORIGIN.split(",").map(origin => origin.trim()).filter(Boolean)
+	: ["*"];
+
+const corsOptions = {
+	origin: (origin, callback) => {
+		if (!origin || allowedOrigins.includes("*")) {
+			return callback(null, true);
+		}
+		if (allowedOrigins.includes(origin)) {
+			return callback(null, true);
+		}
+		return callback(new Error("Not allowed by CORS"));
+	},
+	credentials: true
+};
+
+app.use(express.json({ limit: process.env.JSON_LIMIT || "1mb" }));
+app.use(express.urlencoded({ extended: false, limit: process.env.JSON_LIMIT || "1mb" }));
+app.use(cors(corsOptions));
 
 // Security headers
 const securityHeaders = require("./middlewares/securityHeaders");
@@ -43,6 +63,14 @@ app.use("/api/audit-logs", require("./routes/audit.routes"));
 // IP blocker middleware (applies to everything after)
 const ipBlocker = require("./middlewares/ipBlocker");
 app.use(ipBlocker);
+
+// 404 handler
+app.use((req, res) => {
+	res.status(404).json({
+		success: false,
+		error: "Route not found"
+	});
+});
 
 // Global error handler (must be last)
 const errorHandler = require("./middlewares/errorHandler");

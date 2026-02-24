@@ -6,6 +6,12 @@ export default function Alerts() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const getSeverityClass = (severity) => {
+    if (severity === "HIGH") return "badge badge-high";
+    if (severity === "MEDIUM") return "badge badge-medium";
+    return "badge badge-low";
+  };
+
   useEffect(() => {
     api.get("/alerts")
       .then(res => {
@@ -19,45 +25,53 @@ export default function Alerts() {
   }, []);
 
   if (loading) {
-    return <p>Loading alerts...</p>;
-  }
-
-  if (!alerts.length) {
     return (
-      <div>
+      <div className="app-shell">
         <Navbar />
-        <h2>Alerts</h2>
-        <p>No alerts detected.</p>
+        <div className="page">
+          <div className="state-block">Loading alerts...</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="app-shell">
       <Navbar />
-      <h2>Security Alerts</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Severity</th>
-            <th>IP Address</th>
-            <th>Status</th>
-            <th>Created At</th>
-          </tr>
-        </thead>
-        <tbody>
-          {alerts.map(a => (
-            <tr key={a._id}>
-              <td>{a.title}</td>
-              <td>{a.severity}</td>
-              <td>{a.ipAddress}</td>
-              <td>{a.status}</td>
-              <td>{new Date(a.createdAt).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="page">
+        <div className="page-header">
+          <h2 className="section-title">Security Alerts</h2>
+        </div>
+
+        {!alerts.length ? (
+          <div className="state-block">No alerts detected.</div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Severity</th>
+                  <th>IP Address</th>
+                  <th>Status</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {alerts.map(a => (
+                  <tr key={a._id}>
+                    <td>{a.title}</td>
+                    <td><span className={getSeverityClass(a.severity)}>{a.severity}</span></td>
+                    <td>{a.ipAddress}</td>
+                    <td>{a.status}</td>
+                    <td>{new Date(a.createdAt).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

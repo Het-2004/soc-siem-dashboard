@@ -22,38 +22,51 @@ export default function AuditLogs() {
   };
 
   if (loading) {
-    return <p>Loading audit logs...</p>;
+    return (
+      <div className="app-shell">
+        <Navbar />
+        <div className="page">
+          <div className="state-block">Loading audit logs...</div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="app-shell">
       <Navbar />
-      <h2>Audit Logs</h2>
+      <div className="page">
+        <div className="page-header">
+          <h2 className="section-title">Audit Logs</h2>
+        </div>
 
-      {logs.length === 0 ? (
-        <p>No audit logs found.</p>
-      ) : (
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ background: "#f5f5f5" }}>
-              <th style={{ padding: "0.75rem", textAlign: "left", borderBottom: "2px solid #667eea" }}>Action</th>
-              <th style={{ padding: "0.75rem", textAlign: "left", borderBottom: "2px solid #667eea" }}>Role</th>
-              <th style={{ padding: "0.75rem", textAlign: "left", borderBottom: "2px solid #667eea" }}>IP Address</th>
-              <th style={{ padding: "0.75rem", textAlign: "left", borderBottom: "2px solid #667eea" }}>Timestamp</th>
-            </tr>
-          </thead>
-          <tbody>
-            {logs.map(log => (
-              <tr key={log._id} style={{ borderBottom: "1px solid #ddd" }}>
-                <td style={{ padding: "0.75rem" }}>{log.action}</td>
-                <td style={{ padding: "0.75rem" }}>{log.role}</td>
-                <td style={{ padding: "0.75rem" }}>{log.ipAddress}</td>
-                <td style={{ padding: "0.75rem" }}>{new Date(log.timestamp).toLocaleString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+        {logs.length === 0 ? (
+          <div className="state-block">No audit logs found.</div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Role</th>
+                  <th>IP Address</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                {logs.map(log => (
+                  <tr key={log._id}>
+                    <td>{log.action}</td>
+                    <td>{log.role}</td>
+                    <td>{log.ipAddress}</td>
+                    <td>{new Date(log.timestamp).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -6,6 +6,18 @@ export default function Incidents() {
   const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const getSeverityClass = (severity) => {
+    if (severity === "HIGH") return "badge badge-high";
+    if (severity === "MEDIUM") return "badge badge-medium";
+    return "badge badge-low";
+  };
+
+  const getStatusClass = (status) => {
+    if (status === "RESOLVED") return "badge badge-resolved";
+    if (status === "INVESTIGATING") return "badge badge-investigating";
+    return "badge badge-open";
+  };
+
   useEffect(() => {
     fetchIncidents();
   }, []);
@@ -22,45 +34,49 @@ export default function Incidents() {
   };
 
   if (loading) {
-    return <p>Loading incidents...</p>;
+    return (
+      <div className="app-shell">
+        <Navbar />
+        <div className="page">
+          <div className="state-block">Loading incidents...</div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="app-shell">
       <Navbar />
-      <h2>Security Incidents</h2>
-
-      {incidents.length === 0 ? (
-        <p>No incidents found.</p>
-      ) : (
-        <div>
-          {incidents.map(i => (
-            <div 
-              key={i._id}
-              style={{
-                padding: "1rem",
-                marginBottom: "1rem",
-                background: "#f9f9f9",
-                border: "1px solid #ddd",
-                borderRadius: "8px"
-              }}
-            >
-              <h3>{i.title}</h3>
-              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-                <div>
-                  <strong>Severity:</strong> <span style={{ color: i.severity === "HIGH" ? "#e74c3c" : "#f39c12" }}>{i.severity}</span>
-                </div>
-                <div>
-                  <strong>Status:</strong> <span style={{ color: i.status === "RESOLVED" ? "#27ae60" : i.status === "INVESTIGATING" ? "#f39c12" : "#e74c3c" }}>{i.status}</span>
-                </div>
-              </div>
-              {i.assignedTo && (
-                <p><strong>Assigned To:</strong> {i.assignedTo.name} ({i.assignedTo.role})</p>
-              )}
-            </div>
-          ))}
+      <div className="page">
+        <div className="page-header">
+          <h2 className="section-title">Security Incidents</h2>
         </div>
-      )}
+
+        {incidents.length === 0 ? (
+          <div className="state-block">No incidents found.</div>
+        ) : (
+          <div className="list-stack">
+            {incidents.map(i => (
+              <div key={i._id} className="list-item">
+                <h3>{i.title}</h3>
+                <div className="meta-row">
+                  <span>
+                    Severity: <span className={getSeverityClass(i.severity)}>{i.severity}</span>
+                  </span>
+                  <span>
+                    Status: <span className={getStatusClass(i.status)}>{i.status}</span>
+                  </span>
+                </div>
+                {i.assignedTo && (
+                  <p className="meta-row">
+                    Assigned To: {i.assignedTo.name} ({i.assignedTo.role})
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -44,12 +44,12 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <>
+      <div className="app-shell">
         <Navbar />
-        <div style={{ padding: "2rem", textAlign: "center" }}>
-          <p>Loading dashboard...</p>
+        <div className="page">
+          <div className="state-block">Loading dashboard...</div>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -62,67 +62,71 @@ export default function Dashboard() {
     : [];
 
   return (
-    <>
+    <div className="app-shell">
       <Navbar />
-      <div style={{ padding: "2rem" }}>
-        <h2>SOC Dashboard Analytics</h2>
-        
+      <div className="page">
+        <div className="page-header">
+          <h2 className="section-title">SOC Dashboard Analytics</h2>
+        </div>
+
         {error && (
-          <div style={{ padding: "1rem", background: "#ffebee", color: "#e74c3c", borderRadius: "4px", marginBottom: "1rem" }}>
+          <div className="alert alert-error">
             {error}
           </div>
         )}
-        
+
         {stats && (
-          <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem", flexWrap: "wrap" }}>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
-              <h3>Total Alerts</h3>
-              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#667eea" }}>{stats.total || 0}</p>
+          <div className="kpi-grid">
+            <div className="kpi-card">
+              <div className="kpi-label">Total Alerts</div>
+              <div className="kpi-value" style={{ color: "#667eea" }}>{stats.total || 0}</div>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
-              <h3>High Severity</h3>
-              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#e74c3c" }}>{stats.high || 0}</p>
+            <div className="kpi-card">
+              <div className="kpi-label">High Severity</div>
+              <div className="kpi-value" style={{ color: "#e74c3c" }}>{stats.high || 0}</div>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
-              <h3>Medium Severity</h3>
-              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#f39c12" }}>{stats.medium || 0}</p>
+            <div className="kpi-card">
+              <div className="kpi-label">Medium Severity</div>
+              <div className="kpi-value" style={{ color: "#f39c12" }}>{stats.medium || 0}</div>
             </div>
-            <div style={{ padding: "1rem", background: "#f5f5f5", borderRadius: "8px", minWidth: "150px" }}>
-              <h3>Low Severity</h3>
-              <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#27ae60" }}>{stats.low || 0}</p>
+            <div className="kpi-card">
+              <div className="kpi-label">Low Severity</div>
+              <div className="kpi-value" style={{ color: "#27ae60" }}>{stats.low || 0}</div>
             </div>
           </div>
         )}
 
-        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+        <div className="chart-grid">
           {chartData.length > 0 && (
-            <div>
-              <h3>Alert Severity Distribution</h3>
-              <PieChart width={400} height={300}>
-                <Pie data={chartData} dataKey="value" nameKey="name" />
-                <Tooltip />
-                <Legend />
-              </PieChart>
+            <div className="card">
+              <div className="card-title">Alert Severity Distribution</div>
+              <ResponsiveContainer width="100%" height={280}>
+                <PieChart>
+                  <Pie data={chartData} dataKey="value" nameKey="name" />
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
           )}
 
           {trends.length > 0 && (
-            <div>
-              <h3>7-Day Alert Trend</h3>
-              <ResponsiveContainer width={400} height={300}>
+            <div className="card">
+              <div className="card-title">7-Day Alert Trend</div>
+              <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={trends}>
-                  <CartesianGrid />
+                  <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="_id" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="count" stroke="#667eea" />
+                  <Line type="monotone" dataKey="count" stroke="#667eea" strokeWidth={2} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

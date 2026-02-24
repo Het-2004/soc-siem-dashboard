@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+
 const api = axios.create({
-  baseURL: "http://localhost:5000/api"
+  baseURL: apiBaseUrl,
+  timeout: 15000
 });
 
 // Add token to request headers

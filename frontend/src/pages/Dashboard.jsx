@@ -58,9 +58,9 @@ export default function Dashboard() {
 
   const chartData = stats 
     ? [
-        { name: "HIGH", value: stats.high || 0 },
-        { name: "MEDIUM", value: stats.medium || 0 },
-        { name: "LOW", value: stats.low || 0 }
+        { name: "HIGH", value: stats.high || 0, fill: "#e74c3c" },
+        { name: "MEDIUM", value: stats.medium || 0, fill: "#f39c12" },
+        { name: "LOW", value: stats.low || 0, fill: "#27ae60" }
       ]
     : [];
 
@@ -125,11 +125,25 @@ export default function Dashboard() {
               <div className="card-title">7-Day Alert Trend</div>
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={trends}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="_id" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="count" stroke="#667eea" strokeWidth={2} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="_id" stroke="#666" />
+                  <YAxis stroke="#666" />
+                  <Tooltip 
+                    contentStyle={{ 
+                      background: '#fff', 
+                      border: '1px solid #ddd',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                    }} 
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="count" 
+                    stroke="#667eea" 
+                    strokeWidth={3}
+                    dot={{ fill: '#667eea', r: 5 }}
+                    activeDot={{ r: 7 }}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>

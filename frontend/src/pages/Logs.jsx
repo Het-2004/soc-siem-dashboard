@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Logs() {
   const [logs, setLogs] = useState([]);
@@ -29,7 +30,10 @@ export default function Logs() {
       <div className="app-shell">
         <Navbar />
         <div className="page">
-          <div className="state-block">Loading logs...</div>
+          <div className="state-block">
+            <div className="spinner"></div>
+            <p>Loading logs...</p>
+          </div>
         </div>
       </div>
     );
@@ -45,47 +49,57 @@ export default function Logs() {
 
         <div className="filters">
           <input
-            placeholder="Search logs..."
+            className="search-input"
+            placeholder="🔍 Search logs..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
 
           <select
+            className="select-input"
             value={severity}
             onChange={e => setSeverity(e.target.value)}
           >
             <option value="">All Severities</option>
-            <option value="HIGH">High</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="LOW">Low</option>
+            <option value="HIGH">🔴 High</option>
+            <option value="MEDIUM">🟡 Medium</option>
+            <option value="LOW">🟢 Low</option>
           </select>
 
-          <button onClick={fetchLogs}>Filter</button>
+          <button className="btn-primary" onClick={fetchLogs}>
+            🔍 Filter
+          </button>
         </div>
 
         {logs.length === 0 ? (
-          <div className="state-block">No logs found.</div>
+          <div className="state-block">📝 No logs found.</div>
         ) : (
           <div className="list-stack">
             {logs.map(log => (
               <div
                 key={log._id}
-                className="list-item"
+                className="log-item"
                 style={{
                   borderLeft: `4px solid ${log.severity === "HIGH" ? "#e74c3c" : log.severity === "MEDIUM" ? "#f39c12" : "#27ae60"}`
                 }}
               >
-                <strong>[{log.severity}]</strong> {log.message}
-                <div className="meta-row">
-                  <span>Type: {log.type}</span>
-                  <span>IP: {log.ipAddress}</span>
-                  <span>{new Date(log.createdAt).toLocaleString()}</span>
+                <div className="log-header">
+                  <span className={`log-severity ${log.severity.toLowerCase()}`}>
+                    {log.severity === "HIGH" ? "🔴" : log.severity === "MEDIUM" ? "🟡" : "🟢"} {log.severity}
+                  </span>
+                  <span className="log-type">{log.type}</span>
+                </div>
+                <div className="log-message">{log.message}</div>
+                <div className="log-meta">
+                  <span>📍 {log.ipAddress}</span>
+                  <span>🕒 {new Date(log.createdAt).toLocaleString()}</span>
                 </div>
               </div>
             ))}
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

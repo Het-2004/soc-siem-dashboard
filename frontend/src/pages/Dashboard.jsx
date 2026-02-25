@@ -67,6 +67,9 @@ export default function Dashboard() {
       <div className="page">
         <div className="page-header">
           <h2 className="section-title">SOC Dashboard Analytics</h2>
+          <button className="btn-primary" onClick={fetchData} disabled={loading}>
+            🔄 Refresh
+          </button>
         </div>
 
         {error && (

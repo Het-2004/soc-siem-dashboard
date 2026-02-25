@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function AuditLogs() {
   const [logs, setLogs] = useState([]);
@@ -26,7 +27,10 @@ export default function AuditLogs() {
       <div className="app-shell">
         <Navbar />
         <div className="page">
-          <div className="state-block">Loading audit logs...</div>
+          <div className="state-block">
+            <div className="spinner"></div>
+            <p>Loading audit logs...</p>
+          </div>
         </div>
       </div>
     );
@@ -37,7 +41,10 @@ export default function AuditLogs() {
       <Navbar />
       <div className="page">
         <div className="page-header">
-          <h2 className="section-title">Audit Logs</h2>
+          <h2 className="section-title">🔐 Audit Logs</h2>
+          <button className="btn-primary" onClick={fetchAuditLogs}>
+            🔄 Refresh
+          </button>
         </div>
 
         {logs.length === 0 ? (
@@ -67,6 +74,7 @@ export default function AuditLogs() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Alerts() {
   const [alerts, setAlerts] = useState([]);
@@ -38,7 +39,10 @@ export default function Alerts() {
       <div className="app-shell">
         <Navbar />
         <div className="page">
-          <div className="state-block">Loading alerts...</div>
+          <div className="state-block">
+            <div className="spinner"></div>
+            <p>Loading alerts...</p>
+          </div>
         </div>
       </div>
     );
@@ -115,6 +119,7 @@ export default function Alerts() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

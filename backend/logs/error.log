@@ -1,0 +1,209 @@
+[2026-02-24T16:36:51.767Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:51.772Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:51.811Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:51.822Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.483Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.494Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.924Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.929Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.959Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:56.977Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:58.435Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:36:58.442Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:01.553Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:03.278Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:03.420Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:05.666Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:05.671Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:05.732Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-02-24T16:37:05.735Z] ERROR: Unhandled error TokenExpiredError: jwt expired
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at module.exports (D:\Last Sem Project\soc-siem-dashboard\backend\middlewares\auth.middleware.js:7:18)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)

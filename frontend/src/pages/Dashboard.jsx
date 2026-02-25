@@ -47,7 +47,10 @@ export default function Dashboard() {
       <div className="app-shell">
         <Navbar />
         <div className="page">
-          <div className="state-block">Loading dashboard...</div>
+          <div className="state-block">
+            <div className="spinner"></div>
+            <p>Loading dashboard...</p>
+          </div>
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ export default function Alerts() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [severityFilter, setSeverityFilter] = useState("ALL");
 
   const getSeverityClass = (severity) => {
     if (severity === "HIGH") return "badge badge-high";
@@ -25,10 +26,12 @@ export default function Alerts() {
       });
   }, []);
 
-  const filteredAlerts = alerts.filter(alert => 
-    alert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    alert.ipAddress.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredAlerts = alerts.filter(alert => {
+    const matchesSearch = alert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      alert.ipAddress.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSeverity = severityFilter === "ALL" || alert.severity === severityFilter;
+    return matchesSearch && matchesSeverity;
+  });
 
   if (loading) {
     return (
@@ -54,6 +57,33 @@ export default function Alerts() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+        </div>
+
+        <div className="filters">
+          <button 
+            className={`filter-btn ${severityFilter === "ALL" ? "active" : ""}`}
+            onClick={() => setSeverityFilter("ALL")}
+          >
+            All Alerts
+          </button>
+          <button 
+            className={`filter-btn filter-high ${severityFilter === "HIGH" ? "active" : ""}`}
+            onClick={() => setSeverityFilter("HIGH")}
+          >
+            🔴 High
+          </button>
+          <button 
+            className={`filter-btn filter-medium ${severityFilter === "MEDIUM" ? "active" : ""}`}
+            onClick={() => setSeverityFilter("MEDIUM")}
+          >
+            🟡 Medium
+          </button>
+          <button 
+            className={`filter-btn filter-low ${severityFilter === "LOW" ? "active" : ""}`}
+            onClick={() => setSeverityFilter("LOW")}
+          >
+            🟢 Low
+          </button>
         </div>
 
         {!filteredAlerts.length ? (

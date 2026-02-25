@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 export default function Alerts() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getSeverityClass = (severity) => {
     if (severity === "HIGH") return "badge badge-high";
@@ -24,6 +25,11 @@ export default function Alerts() {
       });
   }, []);
 
+  const filteredAlerts = alerts.filter(alert => 
+    alert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    alert.ipAddress.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) {
     return (
       <div className="app-shell">
@@ -41,10 +47,17 @@ export default function Alerts() {
       <div className="page">
         <div className="page-header">
           <h2 className="section-title">Security Alerts</h2>
+          <input 
+            type="text"
+            className="search-input"
+            placeholder="🔍 Search alerts..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
 
-        {!alerts.length ? (
-          <div className="state-block">No alerts detected.</div>
+        {!filteredAlerts.length ? (
+          <div className="state-block">No alerts found.</div>
         ) : (
           <div className="table-wrap">
             <table>
@@ -58,7 +71,7 @@ export default function Alerts() {
                 </tr>
               </thead>
               <tbody>
-                {alerts.map(a => (
+                {filteredAlerts.map(a => (
                   <tr key={a._id}>
                     <td>{a.title}</td>
                     <td><span className={getSeverityClass(a.severity)}>{a.severity}</span></td>

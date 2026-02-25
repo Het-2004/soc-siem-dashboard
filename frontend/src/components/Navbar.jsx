@@ -7,19 +7,33 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
+      <div className="navbar-brand">
+        <span className="brand-icon">🛡️</span>
+        <span className="brand-text">SOC Dashboard</span>
+      </div>
       <div className="nav-links">
-        <NavLink to="/" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>📊 Dashboard</NavLink>
-        <NavLink to="/alerts" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>🚨 Alerts</NavLink>
-        <NavLink to="/logs" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>📝 Logs</NavLink>
-        <NavLink to="/incidents" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>🔴 Incidents</NavLink>
+        <NavLink to="/" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+          <span className="nav-icon">📊</span> Dashboard
+        </NavLink>
+        <NavLink to="/alerts" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+          <span className="nav-icon">🚨</span> Alerts
+        </NavLink>
+        <NavLink to="/logs" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+          <span className="nav-icon">📝</span> Logs
+        </NavLink>
+        <NavLink to="/incidents" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+          <span className="nav-icon">🔴</span> Incidents
+        </NavLink>
         {role === "ADMIN" && (
-          <NavLink to="/audit-logs" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>📋 Audit Logs</NavLink>
+          <NavLink to="/audit-logs" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+            <span className="nav-icon">📋</span> Audit Logs
+          </NavLink>
         )}
       </div>
       <div className="nav-actions">
-        <span className="nav-role">Role: {role}</span>
+        <span className="nav-role">👤 {role}</span>
         <button onClick={logout} className="nav-logout">
-          Logout
+          🚪 Logout
         </button>
       </div>
     </nav>

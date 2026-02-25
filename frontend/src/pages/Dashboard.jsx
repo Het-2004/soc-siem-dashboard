@@ -84,18 +84,22 @@ export default function Dashboard() {
         {stats && (
           <div className="kpi-grid">
             <div className="kpi-card">
+              <div className="kpi-icon">📊</div>
               <div className="kpi-label">Total Alerts</div>
               <div className="kpi-value" style={{ color: "#667eea" }}>{stats.total || 0}</div>
             </div>
             <div className="kpi-card">
+              <div className="kpi-icon">🔴</div>
               <div className="kpi-label">High Severity</div>
               <div className="kpi-value" style={{ color: "#e74c3c" }}>{stats.high || 0}</div>
             </div>
             <div className="kpi-card">
+              <div className="kpi-icon">🟡</div>
               <div className="kpi-label">Medium Severity</div>
               <div className="kpi-value" style={{ color: "#f39c12" }}>{stats.medium || 0}</div>
             </div>
             <div className="kpi-card">
+              <div className="kpi-icon">🟢</div>
               <div className="kpi-label">Low Severity</div>
               <div className="kpi-value" style={{ color: "#27ae60" }}>{stats.low || 0}</div>
             </div>

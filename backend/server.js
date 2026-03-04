@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+dotenv.config();
+
 const http = require("http");
 const { Server } = require("socket.io");
 const app = require("./app");
+const connectDB = require("./config/db");
 const logger = require("./utils/logger");
-
-dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const socketOrigins = process.env.CORS_ORIGIN
@@ -23,10 +23,13 @@ const io = new Server(server, {
 global.io = io;
 
 io.on("connection", socket => {
-  logger.info("SOC dashboard connected", { socketId: socket.id });
+  logger.info("SOC dashboard client connected", { socketId: socket.id });
+  socket.on("disconnect", () => {
+    logger.info("SOC dashboard client disconnected", { socketId: socket.id });
+  });
 });
 
-mongoose.connect(process.env.MONGO_URI)
+connectDB()
   .then(() => {
     server.listen(PORT, () => {
       logger.info("SOC Server running with real-time alerts", { port: PORT });
@@ -34,12 +37,13 @@ mongoose.connect(process.env.MONGO_URI)
   })
   .catch(err => {
     logger.error("MongoDB connection failed", err);
+    process.exit(1);
   });
 
 const shutdown = (signal) => {
   logger.warn("Shutting down server", { signal });
   server.close(() => {
-    mongoose.connection.close(false).then(() => {
+    require("mongoose").connection.close(false).then(() => {
       logger.info("MongoDB connection closed");
       process.exit(0);
     });

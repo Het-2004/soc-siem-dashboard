@@ -1,2 +1,20 @@
 [2026-02-24T16:36:37.332Z] INFO: SOC Server running with real-time alerts {"port":"5000"}
 [2026-02-24T16:37:11.932Z] INFO: MongoDB connection closed {}
+[2026-03-04T06:43:03.079Z] INFO: MongoDB Connected: localhost {}
+[2026-03-04T07:19:48.298Z] INFO: MongoDB Connected: localhost {}
+[2026-03-04T07:19:48.304Z] INFO: SOC Server running with real-time alerts {"port":"5000"}
+[2026-03-04T07:21:45.173Z] INFO: SOC dashboard client connected {"socketId":"PaYjPDROJCSHndU5AAAB"}
+[2026-03-04T07:21:53.367Z] INFO: SOC dashboard client disconnected {"socketId":"PaYjPDROJCSHndU5AAAB"}
+[2026-03-04T07:24:09.489Z] INFO: SOC dashboard client connected {"socketId":"byiDu-1IDt_dkC5zAAAD"}
+[2026-03-04T07:24:12.925Z] INFO: SOC dashboard client disconnected {"socketId":"byiDu-1IDt_dkC5zAAAD"}
+[2026-03-04T07:24:13.838Z] INFO: SOC dashboard client connected {"socketId":"e00eI9KwCjYDoLkHAAAF"}
+[2026-03-04T07:24:15.041Z] INFO: SOC dashboard client disconnected {"socketId":"e00eI9KwCjYDoLkHAAAF"}
+[2026-03-04T07:26:56.815Z] INFO: SOC dashboard client connected {"socketId":"sDL9SmDQPz0N4iwmAAAH"}
+[2026-03-04T07:27:04.229Z] INFO: SOC dashboard client disconnected {"socketId":"sDL9SmDQPz0N4iwmAAAH"}
+[2026-03-04T07:28:02.993Z] INFO: SOC dashboard client connected {"socketId":"gIIBXIBgT2fqO3lWAAAJ"}
+[2026-03-04T15:35:49.504Z] INFO: SOC dashboard client disconnected {"socketId":"gIIBXIBgT2fqO3lWAAAJ"}
+[2026-03-04T15:35:51.906Z] INFO: SOC dashboard client connected {"socketId":"9J4E4PiYMAnGIUSwAAAL"}
+[2026-03-04T15:40:04.256Z] INFO: SOC dashboard client disconnected {"socketId":"9J4E4PiYMAnGIUSwAAAL"}
+[2026-03-04T15:44:17.552Z] INFO: SOC dashboard client connected {"socketId":"XmsP3U__YcJYCE3vAAAN"}
+[2026-03-04T15:44:26.120Z] INFO: SOC dashboard client disconnected {"socketId":"XmsP3U__YcJYCE3vAAAN"}
+[2026-03-04T15:44:47.134Z] INFO: SOC dashboard client connected {"socketId":"1UAJ3SK1MoIkmdhgAAAP"}

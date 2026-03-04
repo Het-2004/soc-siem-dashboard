@@ -23,6 +23,13 @@ const incidentSchema = new mongoose.Schema({
       by: String,
       date: { type: Date, default: Date.now }
     }
+  ],
+  timeline: [
+    {
+      note: String,
+      addedBy: String,
+      addedAt: { type: Date, default: Date.now }
+    }
   ]
 }, { timestamps: true });
 

@@ -5,6 +5,7 @@ const logSchema = new mongoose.Schema({
   message: String,
   ipAddress: String,
   severity: String,
+  endpoint: String,
   createdAt: { type: Date, default: Date.now }
 });
 

@@ -6,10 +6,12 @@ import Logs from "./pages/Logs";
 import Incidents from "./pages/Incidents";
 import AuditLogs from "./pages/AuditLogs";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import CyberBackground from "./components/CyberBackground";
 
 function App() {
   return (
     <BrowserRouter>
+      <CyberBackground />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

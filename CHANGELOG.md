@@ -42,3 +42,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [8/24] 2026-03-06 10:49:12
 - MongoDB connection now retries up to 5 times with exponential backoff before failing.
 
+
+## [9/24] 2026-03-06 10:54:16
+- Incidents page displays a chronological timeline view of all events linked to each incident.
+

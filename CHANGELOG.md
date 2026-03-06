@@ -66,3 +66,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [14/24] 2026-03-06 11:19:42
 - Error handler now omits stack trace from responses when NODE_ENV is 'production'.
 
+
+## [15/24] 2026-03-06 11:24:47
+- ThreatMap component fetches live geo-IP data and updates marker positions every 60 seconds.
+

@@ -18,3 +18,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [2/24] 2026-03-06 10:18:38
 - Lowered rate-limit threshold (100 -> 50 req/window) in rateLimiter middleware for better DDoS protection.
 
+
+## [3/24] 2026-03-06 10:23:44
+- Dashboard now shows live alert counts grouped by severity (Critical / High / Medium / Low).
+

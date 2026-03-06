@@ -46,3 +46,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [9/24] 2026-03-06 10:54:16
 - Incidents page displays a chronological timeline view of all events linked to each incident.
 
+
+## [10/24] 2026-03-06 10:59:21
+- Bumped express to 4.19 and audited all dependencies; updated package-lock.json.
+

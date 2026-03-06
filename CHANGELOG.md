@@ -90,3 +90,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [20/24] 2026-03-06 11:50:15
 - monitorCheck.js now catches timeout errors and automatically creates a Critical alert on failure.
 
+
+## [21/24] 2026-03-06 11:55:20
+- Enabled HSTS (max-age 1 year) and X-Content-Type-Options: nosniff in security headers middleware.
+

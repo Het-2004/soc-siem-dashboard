@@ -98,3 +98,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [22/24] 2026-03-06 12:00:24
 - Footer displays a live system health badge (green/orange/red) based on the /health endpoint.
 
+
+## [23/24] 2026-03-06 12:05:28
+- validate.js now strips HTML tags from the incident description field before saving.
+

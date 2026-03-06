@@ -50,3 +50,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [10/24] 2026-03-06 10:59:21
 - Bumped express to 4.19 and audited all dependencies; updated package-lock.json.
 
+
+## [11/24] 2026-03-06 11:04:27
+- User-agent string is now sanitised (special chars stripped) before being written to audit logs.
+

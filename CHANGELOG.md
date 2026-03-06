@@ -54,3 +54,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [11/24] 2026-03-06 11:04:27
 - User-agent string is now sanitised (special chars stripped) before being written to audit logs.
 
+
+## [12/24] 2026-03-06 11:09:33
+- Navbar highlights the current active route and hides menu items based on the user's role.
+

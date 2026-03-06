@@ -82,3 +82,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [18/24] 2026-03-06 11:40:03
 - Removed duplicate admin/user entries in seed.js that violated the unique-index constraint.
 
+
+## [19/24] 2026-03-06 11:45:08
+- AuditLogs page now has a date-range picker and a CSV export button for compliance reporting.
+

@@ -58,3 +58,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [12/24] 2026-03-06 11:09:33
 - Navbar highlights the current active route and hides menu items based on the user's role.
 
+
+## [13/24] 2026-03-06 11:14:37
+- New GET /api/stats/top-ips endpoint returns the 10 most frequent source IPs from recent logs.
+

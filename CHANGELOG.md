@@ -70,3 +70,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [15/24] 2026-03-06 11:24:47
 - ThreatMap component fetches live geo-IP data and updates marker positions every 60 seconds.
 
+
+## [16/24] 2026-03-06 11:29:52
+- Centralised Axios configuration in api.js: base URL, auth header injection, and error interceptor.
+

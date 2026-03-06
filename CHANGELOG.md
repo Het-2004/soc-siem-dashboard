@@ -62,3 +62,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [13/24] 2026-03-06 11:14:37
 - New GET /api/stats/top-ips endpoint returns the 10 most frequent source IPs from recent logs.
 
+
+## [14/24] 2026-03-06 11:19:42
+- Error handler now omits stack trace from responses when NODE_ENV is 'production'.
+

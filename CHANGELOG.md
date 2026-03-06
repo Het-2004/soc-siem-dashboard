@@ -86,3 +86,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [19/24] 2026-03-06 11:45:08
 - AuditLogs page now has a date-range picker and a CSV export button for compliance reporting.
 
+
+## [20/24] 2026-03-06 11:50:15
+- monitorCheck.js now catches timeout errors and automatically creates a Critical alert on failure.
+

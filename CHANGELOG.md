@@ -94,3 +94,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [21/24] 2026-03-06 11:55:20
 - Enabled HSTS (max-age 1 year) and X-Content-Type-Options: nosniff in security headers middleware.
 
+
+## [22/24] 2026-03-06 12:00:24
+- Footer displays a live system health badge (green/orange/red) based on the /health endpoint.
+

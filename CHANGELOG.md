@@ -34,3 +34,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [6/24] 2026-03-06 10:39:01
 - Refactored detector.js: threat scoring moved to calculateThreatScore() helper for reusability.
 
+
+## [7/24] 2026-03-06 10:44:07
+- Alerts page now supports selecting and bulk-dismissing multiple low-severity alerts at once.
+

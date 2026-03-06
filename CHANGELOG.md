@@ -74,3 +74,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [16/24] 2026-03-06 11:29:52
 - Centralised Axios configuration in api.js: base URL, auth header injection, and error interceptor.
 
+
+## [17/24] 2026-03-06 11:34:57
+- Added 'analyst' role to RBAC middleware with read-only permissions on incidents and alerts.
+

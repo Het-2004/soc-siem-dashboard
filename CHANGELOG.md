@@ -102,3 +102,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [23/24] 2026-03-06 12:05:28
 - validate.js now strips HTML tags from the incident description field before saving.
 
+
+## [24/24] 2026-03-06 12:10:32
+- architecture.md updated: added updated component diagram, data-flow arrows, and deployment notes.
+

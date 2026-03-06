@@ -78,3 +78,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [17/24] 2026-03-06 11:34:57
 - Added 'analyst' role to RBAC middleware with read-only permissions on incidents and alerts.
 
+
+## [18/24] 2026-03-06 11:40:03
+- Removed duplicate admin/user entries in seed.js that violated the unique-index constraint.
+

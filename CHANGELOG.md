@@ -30,3 +30,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [5/24] 2026-03-06 10:33:55
 - Added filter dropdown in Logs page allowing users to filter by log level in real time.
 
+
+## [6/24] 2026-03-06 10:39:01
+- Refactored detector.js: threat scoring moved to calculateThreatScore() helper for reusability.
+

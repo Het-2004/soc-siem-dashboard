@@ -26,3 +26,7 @@ All notable changes to the SOC-SIEM Dashboard are documented here.
 ## [4/24] 2026-03-06 10:28:49
 - Fixed IPv6 loopback (::1) being incorrectly blocked by the IP blocker middleware.
 
+
+## [5/24] 2026-03-06 10:33:55
+- Added filter dropdown in Logs page allowing users to filter by log level in real time.
+

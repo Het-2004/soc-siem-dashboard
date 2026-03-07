@@ -185,7 +185,7 @@ VITE_SOCKET_URL=http://localhost:5000
 | **System Type** | SIEM Dashboard / Security Operations Center |
 | **Stack** | MERN (MongoDB, Express, React, Node.js) |
 | **Duration** | Jan 16 – Apr 24, 2026 (14 weeks) |
-| **Developer** | Het Prajapati |
+| **Developer** | Het Solanki |
 | **GitHub** | [Het-2004/soc-siem-dashboard](https://github.com/Het-2004/soc-siem-dashboard) |
 
 ---

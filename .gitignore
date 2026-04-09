@@ -1,0 +1,38 @@
+# ── Secrets & Environment ─────────────────────────────────────────
+# NEVER commit real .env files — they contain secrets
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Only .env.example and .env.development (no secrets) can be committed
+!.env.example
+!frontend/.env.development
+
+# ── Node.js ───────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Build Output ──────────────────────────────────────────────────
+dist/
+build/
+frontend/dist/
+
+# ── Logs ──────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── OS Files ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Testing ───────────────────────────────────────────────────────
+coverage/

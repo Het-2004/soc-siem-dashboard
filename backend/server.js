@@ -34,6 +34,10 @@ connectDB()
     server.listen(PORT, () => {
       logger.info("SOC Server running with real-time alerts", { port: PORT });
     });
+
+    // Start real-world auto-incident correlation job
+    const startAutoIncidentJob = require("./jobs/autoIncident");
+    startAutoIncidentJob();
   })
   .catch(err => {
     logger.error("MongoDB connection failed", err);

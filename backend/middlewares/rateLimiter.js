@@ -1,11 +1,19 @@
 const rateLimit = new Map();
 
+// Periodically clear stale entries to avoid memory growth
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateLimit.entries()) {
+    if (now > entry.resetTime) rateLimit.delete(key);
+  }
+}, 60_000);
+
 const rateLimiter = (req, res, next) => {
   const ip = req.ip || req.connection.remoteAddress;
   const now = Date.now();
   const windowMinutes = Number(process.env.RATE_LIMIT_WINDOW_MIN || 15);
   const windowMs = windowMinutes * 60 * 1000;
-  const maxRequests = Number(process.env.RATE_LIMIT_MAX || 100);
+  const maxRequests = Number(process.env.RATE_LIMIT_MAX || 500);  // raised from 100 → 500
 
   const entry = rateLimit.get(ip);
   if (!entry || now > entry.resetTime) {

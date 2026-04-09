@@ -1,0 +1,59 @@
+# render.yaml — Render.com deployment config for SOC SIEM backend
+#
+# Deploy steps:
+#   1. Push your project to GitHub
+#   2. Go to https://render.com → New → Web Service → connect your repo
+#   3. Render auto-detects this file and uses these settings
+#   OR: You can set these manually in the Render dashboard
+#
+# Free tier: 512MB RAM, auto-sleep after 15min inactivity (upgradeable)
+
+services:
+  - type: web
+    name: soc-siem-backend
+    env: node
+    region: singapore   # closest to India
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: PORT
+        value: 10000          # Render assigns its own port via $PORT at runtime
+
+      # ── Set these in Render Dashboard → Environment ─────────────
+      # Never commit real secrets to this file!
+      - key: MONGO_URI
+        sync: false           # Set manually in Render dashboard (MongoDB Atlas URI)
+
+      - key: JWT_SECRET
+        sync: false           # Generate: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+      - key: REFRESH_SECRET
+        sync: false           # Generate: same command as JWT_SECRET
+
+      - key: ACCESS_TOKEN_EXPIRY
+        value: 15m
+
+      - key: REFRESH_TOKEN_EXPIRY
+        value: 7d
+
+      - key: INGEST_API_KEY
+        sync: false           # Generate: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+      - key: CORS_ORIGIN
+        sync: false           # Set to your Vercel URL: https://your-app.vercel.app
+
+      # Optional — email alerts
+      # - key: SMTP_USER
+      #   sync: false
+      # - key: SMTP_PASS
+      #   sync: false
+      # - key: ALERT_EMAIL
+      #   sync: false

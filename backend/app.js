@@ -29,9 +29,12 @@ app.use(cors(corsOptions));
 const securityHeaders = require("./middlewares/securityHeaders");
 app.use(securityHeaders);
 
-// Rate limiting
+// Rate limiting — skip for auth routes (login / register get their own generous limit)
 const rateLimiter = require("./middlewares/rateLimiter");
-app.use(rateLimiter);
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api/auth")) return next();
+  return rateLimiter(req, res, next);
+});
 
 // IP blocker — placed before routes so it can gate all requests
 const ipBlocker = require("./middlewares/ipBlocker");
@@ -50,12 +53,13 @@ const auditLogger = require("./middlewares/auditLogger");
 app.use(auditLogger);
 
 // Protected API routes
-app.use("/api/alerts",     require("./routes/alert.routes"));
-app.use("/api/incidents",  require("./routes/incident.routes"));
-app.use("/api/logs",       require("./routes/log.routes"));
-app.use("/api/stats",      require("./routes/stats.routes"));
-app.use("/api/trends",     require("./routes/trend.routes"));
+app.use("/api/alerts", require("./routes/alert.routes"));
+app.use("/api/incidents", require("./routes/incident.routes"));
+app.use("/api/logs", require("./routes/log.routes"));
+app.use("/api/stats", require("./routes/stats.routes"));
+app.use("/api/trends", require("./routes/trend.routes"));
 app.use("/api/audit-logs", require("./routes/audit.routes"));
+app.use("/api/ingest", require("./routes/ingest.routes")); // Real-world data ingestion
 
 // 404 handler
 app.use((req, res) => {

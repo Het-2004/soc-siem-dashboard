@@ -207,3 +207,11 @@
     at Layer.handle [as handle_request] (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\layer.js:95:5)
     at D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:284:15
     at router.process_params (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\express\lib\router\index.js:346:12)
+[2026-03-12T06:24:29.677Z] ERROR: IP block check failed MongooseError: Operation `blockedips.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:185:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)
+[2026-03-12T06:24:49.774Z] ERROR: IP block check failed MongooseError: Operation `blockedips.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (D:\Last Sem Project\soc-siem-dashboard\backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:185:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)

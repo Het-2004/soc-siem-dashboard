@@ -1,20 +1,29 @@
-# 🔐 SOC Command Center
-### Security Operations Center — Full-Stack MERN Platform
+# 🔐 SOC Command Center: Real-World SIEM Platform
+### Master Documentation & Analytical Overview
 
-> A professional-grade, real-time **Security Information & Event Management (SIEM)** and **Security Operations Center (SOC)** platform. Inspired by enterprise tools like **Splunk**, **Elastic SIEM**, and **Microsoft Sentinel**.
+> A professional-grade, 100% real-world **Security Information & Event Management (SIEM)** and **Security Operations Center (SOC)** platform. This platform monitors living systems and actively detects incoming intrusions natively without relying on fake data or mock data.
 
-**Final Year Project | Computer Engineering | 2025–2026**
+**Final Year Project | Computer Engineering | 2025–2026 | Developer: Het Prajapati**
 
 ---
 
-## 📌 Project Overview
+## 📌 Project Overview & Analytical Perspective
 
-The **SOC Command Center** is a centralized platform to **monitor system logs**, **detect threats in real time**, **manage security alerts**, and **respond to incidents** — all through a premium dark cyberpunk-themed interface.
+The **SOC Command Center** acts as the central nervous system for your digital security. From an analytical perspective, it serves three main purposes:
+1. **Endpoint Visibility**: Extracting raw Windows Security logic (`EventID 4625` and others) natively.
+2. **Real-Time Delivery**: Instantly beaming threats from agents to analysts via WebSockets.
+3. **Automated Triage**: Removing alert-fatigue from analysts by actively measuring attack velocities (e.g., 5 failed logins in 10 minutes) and auto-escalating them into unified Incident tickets.
 
-It follows industry-standard security principles:
-- **OWASP Top 10** (input validation, auth, logging)
-- **NIST Cybersecurity Framework** (Identify → Protect → Detect → Respond → Recover)
-- **Zero Trust** architecture concepts
+We engineered this system to comply with the **NIST Cybersecurity Framework** (Protect → Detect → Respond) and completely purged any "Dummy" or "Mock" data out of the source code. **If you see a threat on this dashboard, it is a real threat against the server.**
+
+---
+
+## 🏗️ Architecture & Data Flow
+
+1. **The Target (Windows Host)**: We execute the `windows-event-agent.ps1` in PowerShell. This acts as an invisible background watchdog polling the deep OS Event Viewer every 30 seconds.
+2. **The Pipeline (Backend API)**: The watchdog pushes raw JSON containing IPs, severity, and Event IDs to your `/api/ingest/bulk` Express endpoint.
+3. **The Correlation Engine (Backend Logic)**: While the API saves data to MongoDB, the `autoIncident.js` chron-job actively monitors the velocity of attacks from any single IP to determine if an intrusion is automated (Brute-Force).
+4. **The Command Center (Frontend Viewer)**: Using `Socket.io`, analysts viewing the Vite+React dashboard see the UI pulse with live `HIGH` severity alerts in less than a second of an attack occurring.
 
 ---
 
@@ -22,174 +31,96 @@ It follows industry-standard security principles:
 
 | Layer | Technologies |
 |---|---|
-| **Frontend** | React 18, Vite, Recharts, Leaflet.js, Socket.IO Client |
-| **Backend** | Node.js, Express.js, Mongoose |
-| **Database** | MongoDB Atlas |
-| **Auth** | JWT (JSON Web Tokens), bcrypt |
-| **Real-Time** | Socket.IO WebSocket |
-| **Security** | RBAC, Rate Limiting, Helmet.js, CORS |
-| **Agents** | Python (`soc_agent.py`), PowerShell (`soc_agent_windows.ps1`) |
-| **CI/CD & Deploy** | GitHub Actions, Render (Backend API), Vercel (Frontend React) |
+| **Frontend UI/UX** | React 18, Vite, Recharts, Cyberpunk CSS Variables, Glassmorphism |
+| **Backend Core** | Node.js, Express.js, Mongoose, Socket.IO |
+| **Database** | MongoDB Atlas (NoSQL Document Store) |
+| **Authentication** | JWT (JSON Web Tokens), bcrypt hashing, Role-Based Access Control |
+| **Log Agents** | Windows native `PowerShell` scripts |
 
 ---
 
-## ✅ Implemented Features
+## 🚀 How to Start the System
 
-### 🔐 Authentication & Security
-- User registration and login with bcrypt password hashing
-- JWT-based stateless session authentication
-- Role-Based Access Control — ADMIN and ANALYST roles
-- Protected frontend routes with automatic redirect on token expiry
-- Cinematic "ACCESS GRANTED" login transition animation
+Running this project requires activating the triad: The API, The Dashboard, and The Watchdog.
 
-### 📊 Dashboard
-- Live KPI cards — Threats Blocked, Active Alerts, Open Incidents, Uptime
-- Real-time alert feed via Socket.IO WebSocket
-- Interactive Threat Map (Leaflet.js) centered on **Gujarat, India** with geo-attack visualization
-- Severity distribution charts (Recharts PieChart + BarChart)
-- Recent alerts summary table
-
-### 🚨 Alerts Management
-- Full alert listing with severity filter (CRITICAL / HIGH / MEDIUM / LOW)
-- Real-time new alert push via Socket.IO
-- Alert detail view — source IP, timestamp, triggered rule
-
-### 🗂️ Incident Management
-- Alert-to-incident escalation workflow
-- Incident lifecycle: OPEN → INVESTIGATING → RESOLVED
-- Analyst assignment, notes, and audit trail
-
-### 📋 Log Explorer
-- Terminal-style monospace viewer with level-color coding
-- Full-text search, level filter (INFO / WARN / ERROR / CRITICAL)
-- Time-range filtering
-
-### 📁 Audit Logs
-- HTTP method indicators (GET / POST / PUT / DELETE)
-- User action tracking across the entire platform
-- Exportable audit trail
-
-### 🎨 UI / UX
-- Premium dark cyberpunk design system with CSS variables and glassmorphism
-- Animated CyberBackground — matrix rain + hexagonal grid + radar sweep
-- Dark glass sidebar with live clock and neon navigation
-- Animated stat counters and live threat ticker on login page
-- Fully responsive layout
-
-### 🤖 Automation & Real-World Connectivity
-- Python SOC agent for simulating and capturing real-world NGINX/Apache log ingestion
-- Windows PowerShell agent for native Windows Event Log forwarding
-- Auto-commit PowerShell script for continuous Git tracking
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-```
-Node.js v18+  |  MongoDB Atlas account  |  Git
-```
-
-### Installation
-
+### Step 1: Start the Backend Brain
 ```bash
-# 1. Clone
-git clone https://github.com/Het-2004/soc-siem-dashboard.git
-cd soc-siem-dashboard
-
-# 2. Backend
+# Terminal 1
 cd backend
-npm install
-cp .env.example .env        # Add MONGO_URI, JWT_SECRET, PORT
-npm start
-
-# 3. Frontend (new terminal)
-cd ../frontend
 npm install
 npm run dev
 ```
+*(Your server starts on port 5000 and connects to MongoDB).*
 
-Open **http://localhost:5173** and log in.
-
-### Run the SOC Agent (Real-World Log Simulator)
-
+### Step 2: Start the UI
 ```bash
-# Python (cross-platform)
-cd docs/agents
-pip install requests
-python soc_agent.py
-
-# Windows PowerShell
-powershell -ExecutionPolicy Bypass -File .\soc_agent_windows.ps1
+# Terminal 2
+cd frontend
+npm install
+npm run dev
 ```
+*(Available at `http://localhost:5173`. Login using your Admin or Analyst credentials).*
 
-### Environment Variables (`.env`)
-
-```env
-MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/soc
-JWT_SECRET=your_super_secret_key
-PORT=5000
-VITE_API_URL=http://localhost:5000/api
-VITE_SOCKET_URL=http://localhost:5000
+### Step 3: Start the Security Watchdog (The Agent)
+**Requires Administrator privileges to read Windows Core Security.**
+```powershell
+# Terminal 3 (Run PowerShell as Administrator)
+cd "scripts"
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+.\windows-event-agent.ps1
 ```
+*(This agent will now quietly monitor your Windows system and stream threats to `localhost:5000`).*
 
 ---
 
-## 🌐 Real-World Use Cases & Data Flow
+## 🧪 How to Work & Test the System
 
-| Scenario | How This Platform Applies |
-|---|---|
-| **Data Gaining & Native Telemetry** | Deploy `soc_agent.py` or `.ps1` on remote target servers. They securely stream real access logs over HTTPS directly into the `/api/ingest` pipeline. |
-| **Active Threat Detection** | The Express backend parses incoming real-time logs against threat signatures (e.g. SQLi, Brute-Force) and generates actionable Alerts. |
-| **Insider Threat Tracking** | Audit logs permanently track all MERN platform user actions providing a zero-trust compliance trail. |
-| **Incident Response** | SOC Analysts convert critical Alerts into Incidents, managing resolution lifecycle entirely within the Command Center UI. |
+Since there is **0% fake data**, to test the platform you must generate a real security event. 
+
+### The Intrusion Test
+1. Make sure all three systems are running (Backend, Frontend, Agent).
+2. Lock your physical computer screen (`Windows Key + L`).
+3. Intentionally attempt to log in with an incorrect password.
+4. Unlock with the correct password.
+5. **View Dashboard**: You will immediately see a `HIGH` priority alert titled *"Failed Logon Attempt (EventID: 4625)"*.
+
+### The Auto-Incident Engine Test
+1. Lock your screen again.
+2. Type a wrong password **6 times repeatedly** to mimic an automated script or hacker brute-forcing your machine.
+3. **View Dashboard**: Your backend correlation engine intercepts this. Instead of overwhelming the analyst, it automatically groups these alerts and generates a massive Red Incident: `[AUTO] Repeated HIGH Alerts from Localhost`, complete with timeline analytics.
 
 ---
 
-## 📅 Project Timeline & Phases
+## 📁 System Administration
 
-| Phase | Category | Focus |
+### Pristine Database Wipe
+Need to wipe previous alerts but keep your user accounts? We built a utility function precisely for this:
+```bash
+cd backend
+node clear-db.js
+```
+*This permanently clears Alerts, Logs, Incidents, and Audit Logs, letting you reset your Security Lab completely without losing your login credentials.*
+
+---
+
+## ✅ Current Project Status
+
+Everything in this ecosystem is natively functioning. 
+
+| Phase | Component | Status |
 |---|---|---|
-| **Phase 1** | Foundation | Backend API, Auth, SIEM Core, WebSocket (Jan 2026) |
-| **Phase 2** | Expansion | Frontend views, Audit Logs, Automation Tools (Feb 2026) |
-| **Phase 3** | UI Redesign | Dark cyberpunk theme, Transitions, Threat map (Mar 2026) |
-| **Phase 4** | Real-World Data | Cross-platform Agents, Log Enrichment, Cloud ingestion (Mar 2026) |
-| **Phase 5** | Backend Polish | XSS Rules, Rate Limiting, Unit Tests (Mar-Apr 2026) |
-| **Phase 6** | Frontend Polish | E2E Tests, Admin Configs, Responsive UI (Apr 2026) |
-| **Phase 7** | CI/CD Deploy | GitHub Actions, Render API, Vercel UI, MongoDB Atlas (Apr 2026) |
-
-> 📋 See [DEVELOPMENT_LOG.md](./DEVELOPMENT_LOG.md) for the full day-by-day work log.
+| 1 | Backend Core SIEM API & Routing | ✅ Complete |
+| 2 | Advanced MERN Authentication & RBAC | ✅ Complete |
+| 3 | Real-Time Live WebSockets | ✅ Complete |
+| 4 | Premium UI with Geo-Map & Dark Glass Theme | ✅ Complete |
+| 5 | **Real-World PowerShell Data Agents** | ✅ Complete |
+| 6 | Automated Intrusion Detection (Auto-Incidents) | ✅ Complete |
+| 7 | Mock Data Purged (100% Reality Driven) | ✅ Complete |
 
 ---
 
-## 📊 Current Status
+## 📄 Repository Rules
+- Keep the `seed.js` script deleted to ensure no mock data infiltrates the metrics tracking.
+- Do not commit `.env` containing your MongoDB URI or Secret Keys.
 
-| Component | Status |
-|---|---|
-| Backend Core SIEM API | ✅ Complete |
-| Authentication & RBAC | ✅ Complete |
-| Real-Time WebSockets | ✅ Complete |
-| Control Center UI | ✅ Complete |
-| Real-World Data Agents | 🔷 Planned — Mar 2026 |
-| Notifications & Webhooks| 🔷 Planned — Mar 2026 |
-| Automated E2E Tests | 🔷 Planned — Apr 2026 |
-| Render/Vercel Deploy | 🔷 Planned — Apr 2026 |
-
----
-
-## 👥 Project Information
-
-| Field | Details |
-|---|---|
-| **Project Name** | SOC Command Center |
-| **System Type** | SIEM Dashboard / Security Operations Center |
-| **Stack** | MERN (MongoDB, Express, React, Node.js) |
-| **Duration** | Jan 16 – Apr 24, 2026 (14 weeks) |
-| **Developer** | Het Prajapati |
-| **GitHub** | [Het-2004/soc-siem-dashboard](https://github.com/Het-2004/soc-siem-dashboard) |
-
----
-
-## 📄 License
-
-MIT License — Free for academic and non-commercial use.
+*MIT License — End of Master Readme File.*

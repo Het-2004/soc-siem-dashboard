@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 import api from "../api/api";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -23,6 +24,16 @@ export default function Incidents() {
   const isAdmin = role === "ADMIN";
 
   useEffect(() => { fetchIncidents(); }, []);
+
+  useEffect(() => {
+    const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:5000", { transports: ["websocket", "polling"] });
+    socket.on("incident-updated", (updatedIncident) => {
+      setIncidents((prev) => 
+        prev?.map(i => i._id === updatedIncident._id ? { ...i, ...updatedIncident } : i) || []
+      );
+    });
+    return () => socket.disconnect();
+  }, []);
 
   const fetchIncidents = async () => {
     try {
@@ -92,7 +103,7 @@ export default function Incidents() {
             </h2>
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.82rem", color: "var(--text-muted)" }}>
-                {incidents.filter(i => i.status !== "RESOLVED").length} active / {incidents.length} total
+                {(incidents || []).filter(i => i.status !== "RESOLVED").length} active / {(incidents || []).length} total
               </span>
               <button className="btn-primary" onClick={fetchIncidents}>⟳ Refresh</button>
             </div>
@@ -104,7 +115,7 @@ export default function Incidents() {
             </div>
           )}
 
-          {incidents.length === 0 ? (
+          {(incidents || []).length === 0 ? (
             <div className="state-block">
               <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.9rem" }}>
                 No incidents found. Create one from the Alerts page.
@@ -112,7 +123,7 @@ export default function Incidents() {
             </div>
           ) : (
             <div className="list-stack">
-              {incidents.map(i => (
+              {incidents?.map(i => (
                 <div
                   key={i._id}
                   className="incident-card"

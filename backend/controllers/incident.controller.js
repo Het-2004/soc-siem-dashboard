@@ -33,10 +33,14 @@ exports.getIncidents = async (req, res) => {
 exports.assignIncident = async (req, res) => {
   const { analystId } = req.body;
 
-  await Incident.findByIdAndUpdate(req.params.id, {
+  const incident = await Incident.findByIdAndUpdate(req.params.id, {
     assignedTo: analystId,
     status: "INVESTIGATING"
-  });
+  }, { new: true }).populate("assignedTo", "name role");
+
+  if (global.io && incident) {
+    global.io.emit("incident-updated", incident);
+  }
 
   res.json({ message: "Incident assigned to analyst" });
 };
@@ -45,7 +49,7 @@ exports.assignIncident = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   const { status, note } = req.body;
 
-  await Incident.findByIdAndUpdate(req.params.id, {
+  const incident = await Incident.findByIdAndUpdate(req.params.id, {
     status,
     $push: {
       timeline: {
@@ -53,7 +57,11 @@ exports.updateStatus = async (req, res) => {
         addedBy: req.user.role
       }
     }
-  });
+  }, { new: true }).populate("assignedTo", "name role");
+
+  if (global.io && incident) {
+    global.io.emit("incident-updated", incident);
+  }
 
   res.json({ message: "Incident updated" });
 };

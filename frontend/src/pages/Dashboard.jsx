@@ -100,7 +100,15 @@ export default function Dashboard() {
       const id = Date.now() + Math.random();
       setLiveAlerts(prev => [{ ...alert, id }, ...prev].slice(0, 4));
       // Also update stats live
-      setStats(prev => prev ? { ...prev, total: (prev.total || 0) + 1, [alert.severity?.toLowerCase()]: (prev[alert.severity?.toLowerCase()] || 0) + 1 } : prev);
+      setStats(prev => {
+        if (!prev) return prev;
+        const sevKey = (alert.severity || "low").toLowerCase();
+        return {
+          ...prev,
+          total: (prev.total || 0) + 1,
+          [sevKey]: (prev[sevKey] || 0) + 1
+        };
+      });
       setTimeout(() => setLiveAlerts(prev => prev.filter(n => n.id !== id)), 8000);
     });
     return () => socket.disconnect();
@@ -249,7 +257,7 @@ export default function Dashboard() {
 
           {/* Charts */}
           <div className="chart-grid">
-            {pieData.length > 0 && (
+            {pieData?.length > 0 && (
               <div className="card">
                 <div className="card-title">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -273,7 +281,7 @@ export default function Dashboard() {
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                       labelLine={{ stroke: "rgba(0, 212, 255, 0.4)", strokeWidth: 1, length1: 15, length2: 10 }}
                     >
-                      {pieData.map((entry, i) => (
+                      {pieData?.map((entry, i) => (
                         <Cell
                           key={`cell-${i}`}
                           fill={entry.fill}
@@ -298,7 +306,7 @@ export default function Dashboard() {
               </div>
             )}
 
-            {trends.length > 0 && (
+            {trends?.length > 0 && (
               <div className="card">
                 <div className="card-title">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -359,7 +367,7 @@ export default function Dashboard() {
               </div>
             )}
 
-            {pieData.length === 0 && trends.length === 0 && (
+            {(!pieData || pieData.length === 0) && (!trends || trends.length === 0) && (
               <div className="state-block" style={{ gridColumn: "1/-1" }}>
                 <div style={{ fontFamily: "var(--font-mono)", color: "var(--text-muted)", fontSize: "0.9rem" }}>
                   📊 No chart data available. Run the seed script or add alerts.

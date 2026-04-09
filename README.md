@@ -3,7 +3,7 @@
 
 > A professional-grade, 100% real-world **Security Information & Event Management (SIEM)** and **Security Operations Center (SOC)** platform. This platform monitors living systems and actively detects incoming intrusions natively without relying on fake data or mock data.
 
-**Final Year Project | Computer Engineering | 2025–2026 | Developer: Het Prajapati**
+**Final Year Project | Computer Engineering | 2025–2026 | Developer: Het Solanki**
 
 ---
 

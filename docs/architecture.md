@@ -5,7 +5,7 @@
 ## 1. High-Level System Architecture
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'darkMode': false, 'background': '#ffffff', 'primaryColor': '#fcfcfc', 'secondaryColor': '#f4f4f4', 'tertiaryColor': '#efefef', 'textColor': '#000000', 'lineColor': '#333333' }}}%%
+%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333'}}}%%
 graph TD
     subgraph "1. Edge Network (Log Sources)"
         A[Web Servers / Nginx] -->|Tail logs| B(Python Agent `soc_agent.py`)
@@ -112,7 +112,7 @@ frontend/src/
 ## 3. Incident Escalation Flow
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'darkMode': false, 'background': '#ffffff', 'primaryColor': '#fcfcfc', 'secondaryColor': '#f4f4f4', 'tertiaryColor': '#efefef', 'textColor': '#000000', 'lineColor': '#333333' }}}%%
+%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333'}}}%%
 sequenceDiagram
     participant Agent as Edge Agent
     participant Engine as Threat Engine

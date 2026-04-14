@@ -5,12 +5,13 @@ This document outlines the data flow architecture for the project, detailing how
 ## Data Flow Diagram
 
 ```mermaid
+%%{init: {'theme': 'default'}}%%
 flowchart TD
     %% Define Styles
-    classDef source fill:#1e40af,stroke:#fff,stroke-width:2px,color:#fff
-    classDef backend fill:#047857,stroke:#fff,stroke-width:2px,color:#fff
-    classDef db fill:#b91c1c,stroke:#fff,stroke-width:2px,color:#fff
-    classDef frontend fill:#6d28d9,stroke:#fff,stroke-width:2px,color:#fff
+    classDef source fill:#dbeafe,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a
+    classDef backend fill:#d1fae5,stroke:#064e3b,stroke-width:2px,color:#064e3b
+    classDef db fill:#fee2e2,stroke:#7f1d1d,stroke-width:2px,color:#7f1d1d
+    classDef frontend fill:#f3e8ff,stroke:#4c1d95,stroke-width:2px,color:#4c1d95
 
     subgraph Data_Sources ["1. Data Collection (Endpoints)"]
         WA[("Windows Event Agent\n(Powershell)")]:::source

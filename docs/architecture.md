@@ -5,28 +5,33 @@
 ## 1. High-Level System Architecture
 
 ```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333'}}}%%
+%%{init: {'theme': 'default', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333', 'clusterBkg': '#f8fafc', 'clusterBorder': '#94a3b8'}}}%%
 graph TD
+    classDef edge fill:#dbeafe,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a
+    classDef cloud fill:#d1fae5,stroke:#064e3b,stroke-width:2px,color:#064e3b
+    classDef db fill:#fee2e2,stroke:#7f1d1d,stroke-width:2px,color:#7f1d1d
+    classDef ui fill:#f3e8ff,stroke:#4c1d95,stroke-width:2px,color:#4c1d95
+
     subgraph "1. Edge Network (Log Sources)"
-        A[Web Servers / Nginx] -->|Tail logs| B(Python Agent `soc_agent.py`)
-        C[Windows Servers] -->|Read EventLogs| D(PowerShell Agent `soc_agent_windows.ps1`)
+        A[Web Servers / Nginx]:::edge -->|Tail logs| B(Python Agent `soc_agent.py`):::edge
+        C[Windows Servers]:::edge -->|Read EventLogs| D(PowerShell Agent `soc_agent_windows.ps1`):::edge
     end
 
     subgraph "2. Cloud Backend (Node.js + Express)"
-        B -- POST (JSON) --> E{`/api/ingest`}
+        B -- POST (JSON) --> E{`/api/ingest`}:::cloud
         D -- POST (JSON) --> E
         
-        E --> F[Threat Detection Engine]
-        F -->|Rule Match| G[Alert Generator]
-        F -->|Safe| H[(MongoDB Atlas)]
+        E --> F[Threat Detection Engine]:::cloud
+        F -->|Rule Match| G[Alert Generator]:::cloud
+        F -->|Safe| H[(MongoDB Atlas)]:::db
         G --> H
     end
 
     subgraph "3. Command Center (React + WebSockets)"
-        G -- Socket.IO (Real-time) --> I[React Frontend]
+        G -- Socket.IO (Real-time) --> I[React Frontend]:::ui
         H -- REST API (Fetch) --> I
-        I --> J[Analyst Dashboard]
-        I --> K[Threat Map / Leaflet]
+        I --> J[Analyst Dashboard]:::ui
+        I --> K[Threat Map / Leaflet]:::ui
     end
 ```
 
@@ -112,7 +117,7 @@ frontend/src/
 ## 3. Incident Escalation Flow
 
 ```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333'}}}%%
+%%{init: {'theme': 'default', 'themeVariables': { 'background': '#ffffff', 'actorBkg': '#dbeafe', 'actorBorder': '#1e3a8a', 'actorTextColor': '#000000', 'noteBkg': '#fef3c7', 'noteBorder': '#b45309', 'signalColor': '#333333', 'signalTextColor': '#000000'}}}%%
 sequenceDiagram
     participant Agent as Edge Agent
     participant Engine as Threat Engine

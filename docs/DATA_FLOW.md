@@ -5,7 +5,7 @@ This document outlines the data flow architecture for the project, detailing how
 ## Data Flow Diagram
 
 ```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333'}}}%%
+%%{init: {'theme': 'default', 'themeVariables': { 'background': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#333333', 'clusterBkg': '#f8fafc', 'clusterBorder': '#94a3b8'}}}%%
 flowchart TD
     %% Define Styles
     classDef source fill:#dbeafe,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a

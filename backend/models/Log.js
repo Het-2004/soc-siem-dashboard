@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const logSchema = new mongoose.Schema({
   type: {
     type: String,
-    enum: ["AUTH", "NETWORK", "SYSTEM", "API", "FIREWALL", "EXTERNAL"],
+    enum: ["AUTH", "NETWORK", "SYSTEM", "API", "FIREWALL", "EXTERNAL", "APP", "DATABASE"],
     default: "EXTERNAL",
     uppercase: true
   },

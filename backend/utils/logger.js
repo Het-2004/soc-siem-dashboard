@@ -1,5 +1,6 @@
-const fs = require("fs");
+const winston = require("winston");
 const path = require("path");
+const fs = require("fs");
 
 const logDir = path.join(__dirname, "../logs");
 
@@ -8,36 +9,27 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
 
-const getTimestamp = () => {
-  return new Date().toISOString();
-};
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: path.join(logDir, "error.log"), level: "error" }),
+    new winston.transports.File({ filename: path.join(logDir, "combined.log") }),
+  ],
+});
 
-const logger = {
-  info: (message, data = {}) => {
-    const log = `[${getTimestamp()}] INFO: ${message} ${JSON.stringify(data)}\n`;
-    console.log(log);
-    fs.appendFileSync(path.join(logDir, "info.log"), log);
-  },
-
-  error: (message, error = {}) => {
-    const log = `[${getTimestamp()}] ERROR: ${message} ${error.stack || JSON.stringify(error)}\n`;
-    console.error(log);
-    fs.appendFileSync(path.join(logDir, "error.log"), log);
-  },
-
-  warn: (message, data = {}) => {
-    const log = `[${getTimestamp()}] WARN: ${message} ${JSON.stringify(data)}\n`;
-    console.warn(log);
-    fs.appendFileSync(path.join(logDir, "warn.log"), log);
-  },
-
-  debug: (message, data = {}) => {
-    if (process.env.NODE_ENV === "development") {
-      const log = `[${getTimestamp()}] DEBUG: ${message} ${JSON.stringify(data)}\n`;
-      console.log(log);
-      fs.appendFileSync(path.join(logDir, "debug.log"), log);
-    }
-  }
-};
+// If we're not in production then log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+if (process.env.NODE_ENV !== "production") {
+  logger.add(new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.simple()
+    ),
+  }));
+}
 
 module.exports = logger;

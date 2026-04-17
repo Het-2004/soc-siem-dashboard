@@ -357,33 +357,7 @@ export default function Login() {
             </button>
           </p>
 
-          {/* Demo credentials */}
-          {!isRegister && (
-            <div className="auth-demo-box">
-              <div className="auth-demo-label">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="16" x2="12" y2="12" />
-                  <line x1="12" y1="8" x2="12.01" y2="8" />
-                </svg>
-                DEMO CREDENTIALS
-              </div>
-              <div className="auth-demo-rows">
-                <div className="auth-demo-row">
-                  <span className="auth-demo-role admin">ADMIN</span>
-                  <code>admin@soc.com</code>
-                  <span className="auth-demo-sep">·</span>
-                  <code>admin123</code>
-                </div>
-                <div className="auth-demo-row">
-                  <span className="auth-demo-role analyst">ANALYST</span>
-                  <code>analyst@soc.com</code>
-                  <span className="auth-demo-sep">·</span>
-                  <code>analyst123</code>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* Demo credentials removed for real-world presentation */}
 
         </div>
       </div>

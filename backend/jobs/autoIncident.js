@@ -1,7 +1,7 @@
 /**
  * autoIncident.js — Background job: auto-create incidents for repeat attackers
  *
- * Runs every 60 seconds. If the same IP address generates 5 or more HIGH-severity
+ * Runs every 60 seconds. If the same IP address generates 3 or more HIGH-severity
  * OPEN alerts within the last 10 minutes, this job automatically creates an
  * Incident in the database (if one does not already exist for that IP).
  *
@@ -15,7 +15,7 @@ const Incident = require("../models/Incident");
 const logger   = require("../utils/logger");
 
 const WINDOW_MS      = 10 * 60 * 1000; // 10 minutes
-const ALERT_THRESHOLD = 5;              // alerts from same IP to trigger incident
+const ALERT_THRESHOLD = 3;              // alerts from same IP to trigger incident
 const CHECK_INTERVAL  = 60 * 1000;     // run every 60 seconds
 
 async function checkAndCreateIncidents() {

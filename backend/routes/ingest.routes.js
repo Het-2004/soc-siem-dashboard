@@ -126,6 +126,94 @@ router.get("/health", (_req, res) => {
   });
 });
 
+/* ── GET /api/ingest (route guide) ───────────────────────── */
+router.get("/", (_req, res) => {
+  return res.json({
+    success: true,
+    message: "Ingest API is reachable",
+    endpoints: {
+      health: "GET /api/ingest/health",
+      ingest: "POST /api/ingest",
+      alert: "POST /api/ingest/alert",
+      log: "POST /api/ingest/log",
+      bulk: "POST /api/ingest/bulk",
+    },
+    auth: "Use x-api-key header or ?apiKey=...",
+  });
+});
+
+/* ── POST /api/ingest (compatibility root endpoint) ───────── */
+router.post("/", apiKeyAuth, async (req, res) => {
+  try {
+    const {
+      title,
+      type,
+      message,
+      ipAddress,
+      severity,
+      status,
+      endpoint,
+    } = req.body;
+
+    if (!ipAddress) {
+      return res.status(400).json({
+        success: false,
+        error: "Required field: ipAddress",
+      });
+    }
+
+    // If title is present, treat as alert payload
+    if (title) {
+      const geoData = lookupGeo(String(ipAddress));
+      const finalSeverity = normSeverity(severity);
+
+      const alert = await Alert.create({
+        title: String(title).slice(0, 300),
+        severity: finalSeverity,
+        ipAddress: String(ipAddress).slice(0, 64),
+        status: normStatus(status),
+        ...geoData,
+      });
+
+      emitAlert(alert);
+      if (finalSeverity === "HIGH") {
+        sendHighAlert(alert);
+      }
+
+      return res.status(201).json({
+        success: true,
+        mode: "alert",
+        id: alert._id,
+        geo: geoData,
+      });
+    }
+
+    // Otherwise require message and treat as log payload
+    if (!message) {
+      return res.status(400).json({
+        success: false,
+        error: "Required fields: message, ipAddress (or send title, ipAddress for alert mode)",
+      });
+    }
+
+    const log = await Log.create({
+      type: String(type || "EXTERNAL").toUpperCase().slice(0, 32),
+      message: String(message).slice(0, 1000),
+      ipAddress: String(ipAddress).slice(0, 64),
+      severity: normSeverity(severity),
+      endpoint: endpoint ? String(endpoint).slice(0, 256) : undefined,
+    });
+
+    return res.status(201).json({
+      success: true,
+      mode: "log",
+      id: log._id,
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 /* ── POST /api/ingest/alert ───────────────────────────────── */
 router.post("/alert", apiKeyAuth, async (req, res) => {
   try {

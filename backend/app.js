@@ -60,6 +60,7 @@ app.use("/api/stats", require("./routes/stats.routes"));
 app.use("/api/trends", require("./routes/trend.routes"));
 app.use("/api/audit-logs", require("./routes/audit.routes"));
 app.use("/api/ingest", require("./routes/ingest.routes")); // Real-world data ingestion
+app.use("/ingest", require("./routes/ingest.routes")); // Backward-compatible alias
 
 // 404 handler
 app.use((req, res) => {
